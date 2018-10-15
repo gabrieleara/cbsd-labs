@@ -2,5 +2,5 @@
 
 set -e
 
-# Assuming there is only one container running
+# Assuming there is only one type of container running
 docker exec -ti $(docker container list -q) bash

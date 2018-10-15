@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+# Downloading the container
+docker pull gabrieleara/cbsd
+
+# Getting the directory in which the script resides
+SOURCE="${BASH_SOURCE[0]}"
+
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+
+DIR="$( cd -P "$( dirname "$SOURCE" )" > /dev/null && pwd )"
+
+# Adding execution rights to commands
+chmod a+x "$DIR/docker-run-component"
+chmod a+x "$DIR/docker-exec-component"
+
+# Linking commands to bin
+sudo ln -sf "$DIR/docker-run-component" /usr/local/bin/
+sudo ln -sf "$DIR/docker-exec-component" /usr/local/bin/

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+# Getting the directory in which the script resides
+SOURCE="${BASH_SOURCE[0]}"
+
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+
+DIR="$( cd -P "$( dirname "$SOURCE" )" > /dev/null && pwd )"
+
+# Running the container with the correct folder mounted
+docker run -ti --network host --mount type=bind,source="$DIR/../Labs",target="/home/coder/cbsd-lab" gabrieleara/cbsd
