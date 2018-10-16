@@ -31,9 +31,11 @@ LIB_DEST = libmy_library.so
 # NOTICE: by default -pedantic forces compliance to ISO C90
 CFLAGS += -Wall -pedantic -std=c99
 
-.PHONY: main static shared dynamic clean
+.PHONY: main all static shared dynamic clean
 
 main: static
+
+all: static shared dynamic
 
 clean:
 	rm *.o *.exe *.so *.a
@@ -130,3 +132,24 @@ main_dynamic.exe: $(DYN_OBJS) libmy_library.so
 # path as first command-line argument
 #
 # ./main_dynamic.exe "$(pwd)/libmy_library.so"
+
+
+
+
+############################# ADDITIONAL RESOURCES #############################
+
+# The following commands can be used to debug and check:
+
+# ldd <file>
+# Prints all library or program dependencies and prints whether the linker is
+# able to resolve them right now or not
+
+# objdump -t <main.o>
+# Print the symbol table entries of the file. The format of the output depends
+# upon the format of the file being dumped. This can be used to check which
+# symbols are exported by this file and which are the required ones.
+
+# objdump -d <main.o>
+# Display the assembler mnemonics for the machine instructions from objfile.
+# This option only disassembles those sections which are expected to contain
+# instructions. For a whole disassembly use -D.
