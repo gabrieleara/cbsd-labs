@@ -20,7 +20,7 @@ RUN apt-get install -y \
 	tmux \
 	less \
 	gdb \
-	curl \
+	curl
 #	cpio \
 #	emacs \
 #	git \
