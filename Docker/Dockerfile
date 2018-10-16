@@ -18,11 +18,11 @@ RUN apt-get install -y \
 	man \
 	sudo \
 	tmux \
-	less
+	less \
+	gdb
 #	curl \
 #	cpio \
 #	emacs \
-#	gdb \
 #	git \
 
 # add webupd8 repository (for java8)
