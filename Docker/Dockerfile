@@ -17,7 +17,8 @@ RUN apt-get install -y \
 	make \
 	man \
 	sudo \
-	tmux
+	tmux \
+	less
 #	curl \
 #	cpio \
 #	emacs \
