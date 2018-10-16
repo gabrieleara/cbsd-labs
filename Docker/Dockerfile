@@ -19,8 +19,8 @@ RUN apt-get install -y \
 	sudo \
 	tmux \
 	less \
-	gdb
-#	curl \
+	gdb \
+	curl \
 #	cpio \
 #	emacs \
 #	git \
