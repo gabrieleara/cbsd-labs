@@ -35,7 +35,7 @@ RUN \
 	apt-get update && \
 	\
 	\
-	echo "===> Installing Java 8..." &&
+	echo "===> Installing Java 8..." && \
 	\
 	\
 	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
