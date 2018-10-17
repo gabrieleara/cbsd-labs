@@ -25,31 +25,36 @@ RUN apt-get install -y \
 #	emacs \
 #	git \
 
-# add webupd8 repository (for java8)
-#RUN \
-#	echo "===> add webupd8 repository..."  && \
-#	echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list  && \
-#	echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list  && \
-#	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886  && \
-#	apt-get update  && \
-#	\
-#	\
-#	echo "===> install Java"  && \
-#	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
-#	echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-#	DEBIAN_FRONTEND=noninteractive  apt-get install -y --force-yes oracle-java8-installer oracle-java8-set-default  && \
-#	\
-#	\
-#	echo "===> clean up..."  && \
-#	rm -rf /var/cache/oracle-jdk8-installer
+# We install Java8 because we will develop something using Java
 
-# for XML-RPC in Java (libs and deps)
-#RUN apt-get install -y \
-#	libxmlrpc3-server-java \
-#	libxmlrpc3-client-java \
-#	libavalon-framework-java \
-#	liblog4j1.2-java \
-#	libexcalibur-logkit-java
+RUN \
+	echo "===> Adding webupd8 repository..." && \
+	echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu bionic main" | tee /etc/apt/sources.list.d/webupd8-team-java.list && \
+	echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu bionic main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list && \
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
+	apt-get update && \
+	\
+	\
+	echo "===> Installing Java 8..." &&
+	\
+	\
+	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
+	echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
+	DEBIAN_FRONTEND=noninteractive  apt-get install -y --force-yes oracle-java8-installer oracle-java8-set-default  && \
+	\
+	\
+	echo "===> Cleaning up..."  && \
+	rm -rf /var/cache/oracle-jdk8-installer
+
+# We download some libraries and dependencies used to develop some classes using
+# XML-RPC in Java
+
+RUN apt-get install -y \
+	libxmlrpc3-server-java \
+	libxmlrpc3-client-java \
+	libavalon-framework-java \
+	liblog4j1.2-java \
+	libexcalibur-logkit-java
 
 # for XML-RPC in C
 #RUN apt-get install -y libxmlrpc-core-c3
