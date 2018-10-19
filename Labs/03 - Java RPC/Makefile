@@ -4,16 +4,16 @@ CLASSPATH :=/usr/share/java/xmlrpc-client.jar:/usr/share/java/xmlrpc-server.jar:
 
 CFLAGS :=-Xlint
 
-all: RPCServer RPCClient
+all: RPCServer.class RPCClient.class
 
 clean:
-	rm *.class RPCServer RPCClient
+	rm -f *.class RPCServer RPCClient
 
-server: RPCServer
+server: RPCServer.class
 	java -cp $(CLASSPATH):. RPCServer
 
-client: RPCClient
+client: RPCClient.class
 	java -cp $(CLASSPATH):. RPCClient
 
-%:	%.java
+%.class: %.java
 	javac -cp $(CLASSPATH) $(JCFLAGS) $<

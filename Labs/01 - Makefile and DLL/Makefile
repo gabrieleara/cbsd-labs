@@ -38,7 +38,7 @@ main: static
 all: static shared dynamic
 
 clean:
-	rm *.o *.exe *.so *.a
+	rm -f *.o *.exe *.so *.a
 
 # Generic compilation rule
 %.o: %.c
