@@ -1,6 +1,6 @@
 # Some useful commands
 
-RM_ALL = rm -f *.o *.exe *.so *.a
+RM_ALL = rm -f *.o *.exe *.so *.a keyfile
 
 # Flags
 CFLAGS += -Wall -pedantic -std=c99
