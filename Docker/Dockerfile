@@ -20,7 +20,8 @@ RUN apt-get install -y \
 	tmux \
 	less \
 	gdb \
-	curl
+	curl \
+	apt-file
 #	cpio \
 #	emacs \
 #	git \
@@ -59,21 +60,19 @@ RUN apt-get install -y \
 # for XML-RPC in C
 #RUN apt-get install -y libxmlrpc-core-c3
 
-# for OmniORB
-#RUN apt-get install -y apt-file
+# For OmniORB
+RUN apt-get install -y \
+	omniidl \
+	omniidl-python \
+	libomnithread3c2 \
+	libomniorb4-1 \
+	libomniorb4-dev
 
-#RUN apt-get install -y \
-#	omniidl \
-#	omniidl-python \
-#	libomnithread3c2 \
-#	libomniorb4-1 \
-#	libomniorb4-dev
-
-# for ProtoBuf
-#RUN apt-get install -y \
-#	libprotobuf-dev \
-#	libprotobuf-c-dev \
-#	protobuf-compiler
+# For ProtoBuf
+RUN apt-get install -y \
+	libprotobuf-dev \
+	libprotobuf-c-dev \
+	protobuf-compiler
 
 # For D-Bus
 #RUN apt-get install -y \
